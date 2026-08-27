@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DP PUZZLE | Luxury 216-Piece Collection</title>
-    <!-- Tailwind CSS -->
+    <title>DP PUZZLE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -59,10 +56,8 @@
 </head>
 <body class="bg-dark-900 text-gray-200 font-sans antialiased selection:bg-gold-500 selection:text-black">
 
-    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-gold-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 bg-black border border-gold-500/40 rounded flex items-center justify-center p-1 group-hover:border-gold-500 transition-colors">
                     <span class="font-serif font-bold text-xl text-white">D<span class="text-gold-500">P</span></span>
@@ -73,15 +68,12 @@
                 </div>
             </a>
 
-            <!-- Navigation Links -->
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
                 <a href="#hero" class="hover:text-gold-500 transition-colors">Home</a>
                 <a href="#collection" class="hover:text-gold-500 transition-colors">Collection (50)</a>
-                <a href="#features" class="hover:text-gold-500 transition-colors">Craftsmanship</a>
                 <a href="#payment" class="hover:text-gold-500 transition-colors">Payment & Delivery</a>
             </nav>
 
-            <!-- Direct Contact Button -->
             <a href="https://wa.me/96181934766" target="_blank" class="hidden sm:flex items-center gap-2 px-4 py-2 border border-gold-500/40 rounded-full text-xs font-semibold text-gold-500 hover:bg-gold-500 hover:text-black transition-all">
                 <i data-lucide="phone" class="w-3.5 h-3.5"></i>
                 <span>+961 81 934 766</span>
@@ -89,7 +81,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-900/10 via-dark-900 to-dark-900"></div>
         <div class="relative max-w-5xl mx-auto px-4 text-center z-10">
@@ -112,7 +103,6 @@
                 </a>
             </div>
             
-            <!-- Quick Spec Highlights -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-gold-500/10 text-left">
                 <div class="p-4 glass-panel rounded-lg">
                     <p class="text-xs text-gray-400 uppercase tracking-widest">Piece Count</p>
@@ -134,7 +124,6 @@
         </div>
     </section>
 
-    <!-- Product Collection (50 Designs) -->
     <section id="collection" class="py-20 bg-dark-800/50 border-t border-gold-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -143,14 +132,11 @@
                 <p class="text-gray-400 text-sm">Select any of our 50 luxury designs below. Fixed price of $10 per unit with 216 precision-cut pieces.</p>
             </div>
 
-            <!-- Dynamic Product Grid -->
             <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Javascript will populate 50 items here -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- Payment & How to Order Section -->
     <section id="payment" class="py-20 bg-dark-900 border-t border-gold-500/10">
         <div class="max-w-5xl mx-auto px-4">
             <div class="text-center mb-12">
@@ -172,7 +158,7 @@
                         <i data-lucide="file-text" class="w-6 h-6"></i>
                     </div>
                     <h3 class="font-serif text-lg font-bold text-white mb-2">2. Submit Form</h3>
-                    <p class="text-xs text-gray-400">Fill in your basic delivery details using our sleek integrated checkout modal.</p>
+                    <p class="text-xs text-gray-400">Fill in your basic delivery details using our integrated checkout modal.</p>
                 </div>
 
                 <div class="glass-panel p-6 rounded-xl border border-gold-500/20 text-center">
@@ -186,7 +172,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-dark-800 border-t border-gold-500/20 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
@@ -204,10 +189,8 @@
         </div>
     </footer>
 
-    <!-- Order Modal -->
     <div id="orderModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="glass-panel w-full max-w-lg rounded-2xl border border-gold-500/30 overflow-hidden shadow-2xl relative animate-fade-in">
-            <!-- Modal Header -->
             <div class="p-6 border-b border-gold-500/20 flex justify-between items-center">
                 <div>
                     <h3 class="font-serif text-xl font-bold text-white">Place Your Order</h3>
@@ -218,7 +201,6 @@
                 </button>
             </div>
 
-            <!-- Modal Form -->
             <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="p-6 space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Selected Puzzle</label>
@@ -265,28 +247,64 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // Generate 50 Unique Luxury Puzzles
+        // Parsed direct photo URLs from your provided list
+        const imageList = [
+            "https://images.unsplash.com/photo-1503122703469-3dbbe39d0d1c?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1736965068880-1ec938f99fd5?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+            "https://img.magnific.com/free-photo/waterfall-chae-son-national-park-lampang-thailand_554837-639.jpg?semt=ais_hybrid&w=740&q=80",
+            "https://thumbs.dreamstime.com/b/remarkable-spring-view-cape-milazzo-panorama-nature-reserve-location-tyrrhenian-sea-island-sicilia-italy-europe-443155132.jpg",
+            "https://thumbs.dreamstime.com/b/go-to-your-own-path-429805503.jpg",
+            "https://depositphotos-blog.s3.eu-west-1.amazonaws.com/uploads/2017/07/Soothing-nature-backgrounds-2.jpg",
+            "https://i.pinimg.com/736x/d9/de/11/d9de112b2c4aedef6df31d05194adf21.jpg",
+            "https://nanpa.org/wp-content/uploads/sites/48/2021/12/2022-SHO-HansArnold-006.jpg",
+            "https://thumbs.dreamstime.com/b/incredibly-beautiful-sunset-sun-lake-sunrise-landscape-panorama-nature-sky-amazing-colorful-clouds-fantasy-design-115177001.jpg",
+            "https://wallpaperaccess.com/full/2710452.jpg",
+            "https://plus.unsplash.com/premium_photo-1710965560034-778eedc929ff?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+            "https://thousandislandslife.com/content/images/size/w1000/2024/05/Mental-Health---the-Outdoors_Image7.jpg",
+            "https://cdn.presstv.ir/Photo/2024/10/2/0a63dcdb-9439-4f45-8c9d-3a7ed4c243e2.jpg",
+            "https://img9.irna.ir/d/r2/2024/09/30/4/171422423.jpg?ts=1727700724571",
+            "https://pbs.twimg.com/media/G1kaRwUaoAAsSRf.jpg",
+            "https://www.leader.ir/media/album/original/83/80/38380_758.jpg",
+            "https://thumbs.dreamstime.com/b/sayyed-hassan-nasrallah-smiling-beirut-city-lebanon-hezbollah-leader-299317052.jpg",
+            "http://english.khamenei.ir/d/2019/10/01/4/19484.jpg?ts=1728467047000",
+            "https://www.chroniquepalestine.com/wp-content/uploads/2020/08/04-4.jpg",
+            "https://cdn1.iranpress.com/uploads/image/2/original/2025/01/05/638717006649614583.jpg",
+            "https://cdn.avapress.net/images/docs/000297/n00297532-b.jpg",
+            "https://the-cradle-media.s3.eu-west-1.amazonaws.com/wp-content/uploads/2021/08/16121946/Sayyid_Hassan_Nasrallah_04.jpg",
+            "https://en.mfa.gov.ir/files/mfaen/newspics/2024092908224365581534726.jpg",
+            "https://media.abna24.com/d/2026/07/22/4/3233151.jpg?ts=1784672242000",
+            "https://dims.apnews.com/dims4/default/08155db/2147483647/strip/true/crop/5184x3454+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fc7%2Fe1%2F5628b7068ed7ed796b51bce64036%2Ff3717d5bf6834c9c852a7b4fbd79d0b7",
+            "https://kashmirobserver.net/wp-content/uploads/2024/10/Hashem-Safieddine-1024x614.webp",
+            "https://www.leader.ir/media/album/original/43/99/84399_358.jpg",
+            "https://static.majalla.com/styles/1200xauto/public/2024-10/177448.jpeg?VersionId=NPrer_6.4hcEmW2otSZfnRw5MiSF07zT",
+            "https://upload.wikimedia.org/wikipedia/commons/7/79/Ali_Khamenei_at_IRGC_Aerospace_Force_2023.jpg",
+            "https://www.leader.ir/media/album/original/55/4/45504_856.jpg",
+            "https://www.icit-digital.org/admin/docs/people/553070033db33_839.jpg",
+            "https://kashmirobserver.net/wp-content/uploads/2022/10/Khamenei.jpg"
+        ];
+
+        // Map the imageList sequentially over the 50 DP PUZZLE items
         const puzzles = Array.from({ length: 50 }, (_, i) => {
             const index = i + 1;
+            const photoUrl = imageList[i % imageList.length];
             return {
                 id: index,
-                title: `DP Design #${String(index).padStart(2, '0')} - Luxury Edition`,
+                title: `DP Edition #${String(index).padStart(2, '0')}`,
                 pieces: 216,
                 price: 10,
-                image: `https://picsum.photos/seed/dp-puzzle-${index}/600/600`
+                image: photoUrl
             };
         });
 
-        // Populate Product Grid
+        // Render Cards in Grid
         const grid = document.getElementById('productGrid');
         puzzles.forEach(puzzle => {
             const card = document.createElement('div');
             card.className = 'glass-panel rounded-xl overflow-hidden gold-border-glow transition-all duration-300 flex flex-col group';
             card.innerHTML = `
-                <div class="relative overflow-hidden aspect-square">
-                    <img src="${puzzle.image}" alt="${puzzle.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="relative overflow-hidden aspect-square bg-black">
+                    <img src="${puzzle.image}" alt="${puzzle.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://picsum.photos/seed/dp-puzzle-${puzzle.id}/600/600'">
                     <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
                         ${puzzle.pieces} Pcs
                     </span>
@@ -307,7 +325,7 @@
             grid.appendChild(card);
         });
 
-        // Modal Functionality
+        // Modal Controls
         let currentPuzzle = null;
 
         function openModal(id) {
@@ -339,7 +357,7 @@
             const notes = document.getElementById('additionalNotes').value || 'None';
             const total = parseInt(qty) * currentPuzzle.price;
 
-            // WhatsApp Message Formatting
+            // Formatted WhatsApp Message
             const message = `*NEW ORDER - DP PUZZLE*\n` +
                 `-----------------------------\n` +
                 `*Customer Name:* ${name}\n` +
