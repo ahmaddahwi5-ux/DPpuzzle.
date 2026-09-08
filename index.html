@@ -1,384 +1,419 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DP PUZZLE</title>
+    <title>Dash AHD | نظام إدارة ومتابعة المستودع</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        gold: {
-                            400: '#E5C158',
-                            500: '#D4AF37',
-                            600: '#AA820A',
-                        },
-                        dark: {
-                            900: '#0B0B0B',
-                            800: '#141414',
-                            700: '#1F1F1F',
-                            600: '#2A2A2A',
+                        brand: {
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            border: '#2A3548',
+                            gold: '#D4AF37',
+                            goldHover: '#AA8C2C',
+                            accent: '#3B82F6'
                         }
                     },
                     fontFamily: {
-                        serif: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        cairo: ['Cairo', 'sans-serif']
                     }
                 }
             }
         }
     </script>
     <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0B0F17;
+            color: #E2E8F0;
+        }
+        .glass-panel {
+            background: rgba(21, 28, 40, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
         .gold-gradient-text {
-            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #997A15 100%);
+            background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #997B19 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gold-border-glow {
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        .gold-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8C2C 100%);
+            color: #0B0F17;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
-        .gold-border-glow:hover {
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+        .gold-btn:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
         }
-        .glass-panel {
-            background: rgba(20, 20, 20, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A3548;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-dark-900 text-gray-200 font-sans antialiased selection:bg-gold-500 selection:text-black">
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar">
 
-    <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-gold-500/20">
+    <header class="glass-panel sticky top-0 z-50 border-b border-brand-border/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-black border border-gold-500/40 rounded flex items-center justify-center p-1 group-hover:border-gold-500 transition-colors">
-                    <span class="font-serif font-bold text-xl text-white">D<span class="text-gold-500">P</span></span>
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-14 h-14 rounded-xl overflow-hidden border border-brand-gold/40 shadow-lg shadow-brand-gold/10 bg-black flex items-center justify-center p-1">
+                    <img src="lo.jpg" alt="Dash AHD Logo" class="w-full h-full object-contain">
                 </div>
-                <div class="flex flex-col">
-                    <span class="font-serif font-bold tracking-widest text-lg text-white">DP PUZZLE</span>
-                    <span class="text-[9px] uppercase tracking-[0.2em] text-gold-500">Luxury Collection</span>
+                <div>
+                    <h1 class="text-2xl font-black tracking-wider gold-gradient-text">DASH AHD</h1>
+                    <p class="text-xs text-gray-400">نظام إدارة وتتبع قطع المستودع</p>
                 </div>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
-                <a href="#hero" class="hover:text-gold-500 transition-colors">Home</a>
-                <a href="#collection" class="hover:text-gold-500 transition-colors">Collection (50)</a>
-                <a href="#payment" class="hover:text-gold-500 transition-colors">Payment & Delivery</a>
-            </nav>
-
-            <a href="https://wa.me/96181934766" target="_blank" class="hidden sm:flex items-center gap-2 px-4 py-2 border border-gold-500/40 rounded-full text-xs font-semibold text-gold-500 hover:bg-gold-500 hover:text-black transition-all">
-                <i data-lucide="phone" class="w-3.5 h-3.5"></i>
-                <span>+961 81 934 766</span>
-            </a>
+            </div>
+            
+            <button onclick="openModal()" class="gold-btn px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm">
+                <i class="fa-solid fa-plus"></i>
+                <span>إضافة قطعة جديدة</span>
+            </button>
         </div>
     </header>
 
-    <section id="hero" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-900/10 via-dark-900 to-dark-900"></div>
-        <div class="relative max-w-5xl mx-auto px-4 text-center z-10">
-            <span class="inline-block px-4 py-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs font-semibold tracking-widest uppercase mb-6">
-                216 Precision Pieces • Premium Finish
-            </span>
-            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
-                Mastering the Art of <br><span class="gold-gradient-text">Elegance & Intellect</span>
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg mb-10 font-light">
-                Discover 50 signature masterpiece designs meticulously created for fine enthusiasts. Every set engineered with 216 ultra-precise, luxury-grade puzzle pieces.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#collection" class="w-full sm:w-auto px-8 py-4 bg-gold-500 text-black font-semibold rounded-full hover:bg-gold-400 transition-all shadow-lg shadow-gold-500/20 text-sm tracking-wider uppercase">
-                    Explore 50 Designs
-                </a>
-                <a href="https://wa.me/96181934766" target="_blank" class="w-full sm:w-auto px-8 py-4 border border-gold-500/40 text-gold-400 font-semibold rounded-full hover:bg-dark-800 transition-all text-sm tracking-wider uppercase flex items-center justify-center gap-2">
-                    <i data-lucide="message-square" class="w-4 h-4"></i>
-                    <span>WhatsApp Concierge</span>
-                </a>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-gold-500/10 text-left">
-                <div class="p-4 glass-panel rounded-lg">
-                    <p class="text-xs text-gray-400 uppercase tracking-widest">Piece Count</p>
-                    <p class="font-serif text-xl font-bold text-white mt-1">216 Pieces</p>
-                </div>
-                <div class="p-4 glass-panel rounded-lg">
-                    <p class="text-xs text-gray-400 uppercase tracking-widest">Price Unit</p>
-                    <p class="font-serif text-xl font-bold text-gold-500 mt-1">$10. USD</p>
-                </div>
-                <div class="p-4 glass-panel rounded-lg">
-                    <p class="text-xs text-gray-400 uppercase tracking-widest">Total Editions</p>
-                    <p class="font-serif text-xl font-bold text-white mt-1">50 Curated</p>
-                </div>
-                <div class="p-4 glass-panel rounded-lg">
-                    <p class="text-xs text-gray-400 uppercase tracking-widest">Ordering</p>
-                    <p class="font-serif text-xl font-bold text-white mt-1">Instant WhatsApp</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
 
-    <section id="collection" class="py-20 bg-dark-800/50 border-t border-gold-500/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">The Complete Collection</h2>
-                <div class="w-24 h-1 bg-gold-500 mx-auto mb-4"></div>
-                <p class="text-gray-400 text-sm">Select any of our 50 luxury designs below. Fixed price of $10 per unit with 216 precision-cut pieces.</p>
-            </div>
-
-            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                </div>
-        </div>
-    </section>
-
-    <section id="payment" class="py-20 bg-dark-900 border-t border-gold-500/10">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-3xl font-bold text-white mb-2">Seamless Ordering & Payment</h2>
-                <p class="text-gray-400 text-sm">Complete your transactions with full ease directly via WhatsApp.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-panel p-6 rounded-xl border border-gold-500/20 text-center">
-                    <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center text-gold-500 mx-auto mb-4">
-                        <i data-lucide="layout-grid" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-serif text-lg font-bold text-white mb-2">1. Select Design</h3>
-                    <p class="text-xs text-gray-400">Choose from any of our 50 unique 216-piece designs listed above.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-xl border border-gold-500/20 text-center">
-                    <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center text-gold-500 mx-auto mb-4">
-                        <i data-lucide="file-text" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-serif text-lg font-bold text-white mb-2">2. Submit Form</h3>
-                    <p class="text-xs text-gray-400">Fill in your basic delivery details using our integrated checkout modal.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-xl border border-gold-500/20 text-center">
-                    <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center text-gold-500 mx-auto mb-4">
-                        <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-serif text-lg font-bold text-white mb-2">3. WhatsApp Checkout</h3>
-                    <p class="text-xs text-gray-400">Your order details and payment methods are finalized dynamically on WhatsApp (+961 81 934 766).</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-dark-800 border-t border-gold-500/20 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-black border border-gold-500/40 rounded flex items-center justify-center p-1">
-                    <span class="font-serif font-bold text-sm text-white">D<span class="text-gold-500">P</span></span>
-                </div>
-                <span class="font-serif font-bold text-white tracking-widest text-sm">DP PUZZLE</span>
-            </div>
-            <div class="text-xs text-gray-500">
-                &copy; 2026 DP PUZZLE. All rights reserved. Premium 216-Piece Collection.
-            </div>
-            <div class="flex gap-4 text-xs text-gold-500">
-                <span>Official Support: +961 81 934 766</span>
-            </div>
-        </div>
-    </footer>
-
-    <div id="orderModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="glass-panel w-full max-w-lg rounded-2xl border border-gold-500/30 overflow-hidden shadow-2xl relative animate-fade-in">
-            <div class="p-6 border-b border-gold-500/20 flex justify-between items-center">
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
                 <div>
-                    <h3 class="font-serif text-xl font-bold text-white">Place Your Order</h3>
-                    <p class="text-xs text-gold-500 mt-1">Complete your order details below</p>
+                    <p class="text-gray-400 text-sm font-semibold">إجمالي العناصر المسجلة</p>
+                    <h3 id="statTotal" class="text-3xl font-bold mt-2 text-white">0</h3>
                 </div>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-white">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
+                <div class="w-14 h-14 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
             </div>
 
-            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="p-6 space-y-4">
+            <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Selected Puzzle</label>
-                    <input type="text" id="modalPuzzleTitle" readonly class="w-full bg-dark-900 border border-gold-500/30 rounded px-3 py-2 text-gold-400 text-sm focus:outline-none">
+                    <p class="text-gray-400 text-sm font-semibold">الجوارير المفرزة</p>
+                    <h3 id="statDrawers" class="text-3xl font-bold mt-2 text-brand-gold">0</h3>
                 </div>
+                <div class="w-14 h-14 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-warehouse"></i>
+                </div>
+            </div>
 
-                <div class="grid grid-cols-2 gap-4">
+            <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-400 text-sm font-semibold">حالة النظام</p>
+                    <h3 class="text-lg font-bold mt-2 text-emerald-400 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                        متصل ومحدث
+                    </h3>
+                </div>
+                <div class="w-14 h-14 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-panel p-8 rounded-3xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center space-y-4 relative z-10">
+                <div class="w-24 h-24 mx-auto rounded-2xl border border-brand-gold/30 p-2 mb-2 bg-black/60 shadow-2xl flex items-center justify-center">
+                    <img src="lo.jpg" class="w-full h-full object-contain">
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold gold-gradient-text">البحث عن قطعة أو سيارة</h2>
+                <p class="text-gray-400 text-sm">أدخل رقم الشاسيه (VIN) أو رقم القطعة للوصول السريع إلى مكان التخزين</p>
+                
+                <div class="relative mt-6">
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="أدخل رقم الشاسيه أو اسم القطعة هنا..." 
+                        class="w-full bg-brand-dark/80 border border-brand-border focus:border-brand-gold text-white text-lg px-6 py-4 rounded-2xl pr-14 focus:outline-none transition-all placeholder-gray-500 shadow-inner">
+                    <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="searchResultCard" class="hidden glass-panel p-6 sm:p-8 rounded-3xl border-2 border-brand-gold/40 transition-all">
+            </section>
+
+        <section class="glass-panel rounded-3xl overflow-hidden">
+            <div class="p-6 border-b border-brand-border/60 flex justify-between items-center flex-wrap gap-4">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-list text-brand-gold"></i>
+                    سجل المستودع العام
+                </h3>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-gray-300">
+                    <thead class="bg-brand-dark/50 text-brand-gold text-xs uppercase tracking-wider border-b border-brand-border">
+                        <tr>
+                            <th class="py-4 px-6">رقم الشاسيه / التعريف</th>
+                            <th class="py-4 px-6">اسم الغرض / القطعة</th>
+                            <th class="py-4 px-6">موديل السيارة</th>
+                            <th class="py-4 px-6">رقم الجارور</th>
+                            <th class="py-4 px-6">مكان التخزين بالتحديد</th>
+                            <th class="py-4 px-6 text-center">إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTable" class="divide-y divide-brand-border/40 text-sm">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="itemModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-brand-gold/30 relative">
+            <button onclick="closeModal()" class="absolute top-6 left-6 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 id="modalTitle" class="text-2xl font-bold gold-gradient-text mb-6">إضافة غرض جديد للمستودع</h3>
+
+            <form id="itemForm" onsubmit="saveItem(event)" class="space-y-4">
+                <input type="hidden" id="editIndex" value="-1">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Price per unit</label>
-                        <input type="text" value="$10 USD (216 Pcs)" readonly class="w-full bg-dark-900 border border-gold-500/20 rounded px-3 py-2 text-gray-400 text-sm focus:outline-none">
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">رقم الشاسيه / VIN</label>
+                        <input type="text" id="vinInput" required class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Quantity</label>
-                        <input type="number" id="modalQuantity" value="1" min="1" max="100" onchange="calculateTotal()" class="w-full bg-dark-900 border border-gold-500/40 rounded px-3 py-2 text-white text-sm focus:border-gold-500 focus:outline-none">
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">اسم القطعة / الغرض</label>
+                        <input type="text" id="itemNameInput" required class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none">
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Full Name *</label>
-                    <input type="text" id="customerName" required placeholder="John Doe" class="w-full bg-dark-900 border border-gold-500/30 rounded px-3 py-2 text-white text-sm focus:border-gold-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Phone Number *</label>
-                    <input type="tel" id="customerPhone" required placeholder="+961 03 000 000" class="w-full bg-dark-900 border border-gold-500/30 rounded px-3 py-2 text-white text-sm focus:border-gold-500 focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1">Additional Notes</label>
-                    <textarea id="additionalNotes" rows="2" placeholder="Delivery instructions or specific requests..." class="w-full bg-dark-900 border border-gold-500/30 rounded px-3 py-2 text-white text-sm focus:border-gold-500 focus:outline-none"></textarea>
-                </div>
-
-                <div class="pt-2 border-t border-gold-500/20 flex justify-between items-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <span class="text-xs text-gray-400 uppercase tracking-wider block">Total Amount</span>
-                        <span id="modalTotal" class="font-serif text-2xl font-bold text-gold-500">$10 USD</span>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">نوع / موديل السيارة</label>
+                        <input type="text" id="carModelInput" required class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none">
                     </div>
-                    <button type="submit" class="px-6 py-3 bg-gold-500 text-black font-bold rounded-lg hover:bg-gold-400 transition-all flex items-center gap-2 text-sm">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        <span>Order via WhatsApp</span>
-                    </button>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">رقم / اسم الجارور</label>
+                        <input type="text" id="drawerInput" required placeholder="مثال: J-12" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-2">موقع التخزين بالتحديد (الرف / القسم)</label>
+                    <input type="text" id="locationInput" required placeholder="مثال: الرف 3 - الجناح B" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-2">تفاصيل وملاحظات إضافية</label>
+                    <textarea id="notesInput" rows="3" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white focus:border-brand-gold focus:outline-none resize-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4">
+                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-gray-800 text-gray-300 font-semibold hover:bg-gray-700">إلغاء</button>
+                    <button type="submit" class="gold-btn px-6 py-2.5 rounded-xl">حفظ البيانات</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <footer class="border-t border-brand-border/40 py-6 text-center text-xs text-gray-500">
+        <p>جميع الحقوق محفوظة &copy; 2026 لـ <span class="text-brand-gold font-bold">Dash AHD</span> - نظام إدارة المستودعات الذكي</p>
+    </footer>
+
     <script>
-        // Parsed direct photo URLs from your provided list
-        const imageList = [
-            "https://images.unsplash.com/photo-1503122703469-3dbbe39d0d1c?fm=jpg&q=60&w=3000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1736965068880-1ec938f99fd5?fm=jpg&q=60&w=3000&auto=format&fit=crop",
-            "https://img.magnific.com/free-photo/waterfall-chae-son-national-park-lampang-thailand_554837-639.jpg?semt=ais_hybrid&w=740&q=80",
-            "https://thumbs.dreamstime.com/b/remarkable-spring-view-cape-milazzo-panorama-nature-reserve-location-tyrrhenian-sea-island-sicilia-italy-europe-443155132.jpg",
-            "https://thumbs.dreamstime.com/b/go-to-your-own-path-429805503.jpg",
-            "https://depositphotos-blog.s3.eu-west-1.amazonaws.com/uploads/2017/07/Soothing-nature-backgrounds-2.jpg",
-            "https://i.pinimg.com/736x/d9/de/11/d9de112b2c4aedef6df31d05194adf21.jpg",
-            "https://nanpa.org/wp-content/uploads/sites/48/2021/12/2022-SHO-HansArnold-006.jpg",
-            "https://thumbs.dreamstime.com/b/incredibly-beautiful-sunset-sun-lake-sunrise-landscape-panorama-nature-sky-amazing-colorful-clouds-fantasy-design-115177001.jpg",
-            "https://wallpaperaccess.com/full/2710452.jpg",
-            "https://plus.unsplash.com/premium_photo-1710965560034-778eedc929ff?fm=jpg&q=60&w=3000&auto=format&fit=crop",
-            "https://thousandislandslife.com/content/images/size/w1000/2024/05/Mental-Health---the-Outdoors_Image7.jpg",
-            "https://cdn.presstv.ir/Photo/2024/10/2/0a63dcdb-9439-4f45-8c9d-3a7ed4c243e2.jpg",
-            "https://img9.irna.ir/d/r2/2024/09/30/4/171422423.jpg?ts=1727700724571",
-            "https://pbs.twimg.com/media/G1kaRwUaoAAsSRf.jpg",
-            "https://www.leader.ir/media/album/original/83/80/38380_758.jpg",
-            "https://thumbs.dreamstime.com/b/sayyed-hassan-nasrallah-smiling-beirut-city-lebanon-hezbollah-leader-299317052.jpg",
-            "http://english.khamenei.ir/d/2019/10/01/4/19484.jpg?ts=1728467047000",
-            "https://www.chroniquepalestine.com/wp-content/uploads/2020/08/04-4.jpg",
-            "https://cdn1.iranpress.com/uploads/image/2/original/2025/01/05/638717006649614583.jpg",
-            "https://cdn.avapress.net/images/docs/000297/n00297532-b.jpg",
-            "https://the-cradle-media.s3.eu-west-1.amazonaws.com/wp-content/uploads/2021/08/16121946/Sayyid_Hassan_Nasrallah_04.jpg",
-            "https://en.mfa.gov.ir/files/mfaen/newspics/2024092908224365581534726.jpg",
-            "https://media.abna24.com/d/2026/07/22/4/3233151.jpg?ts=1784672242000",
-            "https://dims.apnews.com/dims4/default/08155db/2147483647/strip/true/crop/5184x3454+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fc7%2Fe1%2F5628b7068ed7ed796b51bce64036%2Ff3717d5bf6834c9c852a7b4fbd79d0b7",
-            "https://kashmirobserver.net/wp-content/uploads/2024/10/Hashem-Safieddine-1024x614.webp",
-            "https://www.leader.ir/media/album/original/43/99/84399_358.jpg",
-            "https://static.majalla.com/styles/1200xauto/public/2024-10/177448.jpeg?VersionId=NPrer_6.4hcEmW2otSZfnRw5MiSF07zT",
-            "https://upload.wikimedia.org/wikipedia/commons/7/79/Ali_Khamenei_at_IRGC_Aerospace_Force_2023.jpg",
-            "https://www.leader.ir/media/album/original/55/4/45504_856.jpg",
-            "https://www.icit-digital.org/admin/docs/people/553070033db33_839.jpg",
-            "https://kashmirobserver.net/wp-content/uploads/2022/10/Khamenei.jpg"
+        const initialData = [
+            {
+                vin: "1HGCR2F83HA000101",
+                itemName: "شمعات احتراق (Spark Plugs)",
+                carModel: "Honda Accord 2017",
+                drawer: "D-04",
+                location: "الرف الثاني - قسم A",
+                notes: "طقم جديد مكون من 4 قطع أصلية"
+            },
+            {
+                vin: "WBA3A5C58DF000202",
+                itemName: "فلتر زيت المحرك",
+                carModel: "BMW 320i 2015",
+                drawer: "B-12",
+                location: "الرف الأول - قسم C",
+                notes: "متوافق مع محركات N20"
+            }
         ];
 
-        // Map the imageList sequentially over the 50 DP PUZZLE items
-        const puzzles = Array.from({ length: 50 }, (_, i) => {
-            const index = i + 1;
-            const photoUrl = imageList[i % imageList.length];
-            return {
-                id: index,
-                title: `DP Edition #${String(index).padStart(2, '0')}`,
-                pieces: 216,
-                price: 10,
-                image: photoUrl
-            };
+        let inventory = JSON.parse(localStorage.getItem('dash_ahd_inventory')) || initialData;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable();
+            updateStats();
         });
 
-        // Render Cards in Grid
-        const grid = document.getElementById('productGrid');
-        puzzles.forEach(puzzle => {
-            const card = document.createElement('div');
-            card.className = 'glass-panel rounded-xl overflow-hidden gold-border-glow transition-all duration-300 flex flex-col group';
-            card.innerHTML = `
-                <div class="relative overflow-hidden aspect-square bg-black">
-                    <img src="${puzzle.image}" alt="${puzzle.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://picsum.photos/seed/dp-puzzle-${puzzle.id}/600/600'">
-                    <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                        ${puzzle.pieces} Pcs
-                    </span>
-                </div>
-                <div class="p-5 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h3 class="font-serif text-base font-semibold text-white group-hover:text-gold-400 transition-colors">${puzzle.title}</h3>
-                        <p class="text-xs text-gray-400 mt-1">216 Precision Cut Pieces</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-gold-500/10 flex items-center justify-between">
-                        <span class="font-serif text-lg font-bold text-gold-500">$${puzzle.price} USD</span>
-                        <button onclick="openModal(${puzzle.id})" class="px-3.5 py-1.5 bg-gold-500/10 border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-black rounded-lg text-xs font-semibold transition-all">
-                            Order Now
-                        </button>
-                    </div>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
+        function saveToStorage() {
+            localStorage.setItem('dash_ahd_inventory', JSON.stringify(inventory));
+            updateStats();
+        }
 
-        // Modal Controls
-        let currentPuzzle = null;
+        function updateStats() {
+            document.getElementById('statTotal').innerText = inventory.length;
+            const uniqueDrawers = new Set(inventory.map(item => item.drawer));
+            document.getElementById('statDrawers').innerText = uniqueDrawers.size;
+        }
 
-        function openModal(id) {
-            currentPuzzle = puzzles.find(p => p.id === id);
-            document.getElementById('modalPuzzleTitle').value = currentPuzzle.title;
-            document.getElementById('modalQuantity').value = 1;
-            calculateTotal();
-            document.getElementById('orderModal').classList.remove('hidden');
-            document.getElementById('orderModal').classList.add('flex');
+        function renderTable(dataToRender = inventory) {
+            const tbody = document.getElementById('inventoryTable');
+            tbody.innerHTML = '';
+
+            if (dataToRender.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center py-8 text-gray-500">لا توجد بيانات متاحة حاليًا.</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            dataToRender.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.className = "hover:bg-brand-card/50 transition-colors";
+                row.innerHTML = `
+                    <td class="py-4 px-6 font-mono text-brand-gold font-bold">${item.vin}</td>
+                    <td class="py-4 px-6 font-semibold">${item.itemName}</td>
+                    <td class="py-4 px-6 text-gray-400">${item.carModel}</td>
+                    <td class="py-4 px-6"><span class="bg-brand-gold/10 text-brand-gold px-3 py-1 rounded-lg border border-brand-gold/20 font-bold">${item.drawer}</span></td>
+                    <td class="py-4 px-6 text-gray-300">${item.location}</td>
+                    <td class="py-4 px-6 text-center space-x-2 space-x-reverse">
+                        <button onclick="editItem(${index})" class="text-blue-400 hover:text-blue-300 p-2"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteItem(${index})" class="text-rose-500 hover:text-rose-400 p-2"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const resultCard = document.getElementById('searchResultCard');
+
+            if (query === '') {
+                resultCard.classList.add('hidden');
+                renderTable();
+                return;
+            }
+
+            const matched = inventory.find(item => 
+                item.vin.toLowerCase().includes(query) || 
+                item.itemName.toLowerCase().includes(query)
+            );
+
+            if (matched) {
+                resultCard.classList.remove('hidden');
+                resultCard.innerHTML = `
+                    <div class="flex items-start justify-between flex-wrap gap-4 border-b border-brand-border pb-4 mb-4">
+                        <div>
+                            <span class="text-xs bg-brand-gold text-brand-dark font-black px-3 py-1 rounded-full uppercase">تم العثور على القطعة</span>
+                            <h3 class="text-2xl font-bold text-white mt-2">${matched.itemName}</h3>
+                            <p class="text-sm text-gray-400">السيارة: ${matched.carModel} | الشاسيه: <span class="font-mono text-brand-gold">${matched.vin}</span></p>
+                        </div>
+                        <div class="text-left">
+                            <span class="text-xs text-gray-400 block">رقم الجارور</span>
+                            <span class="text-3xl font-black text-brand-gold">${matched.drawer}</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border">
+                            <i class="fa-solid fa-map-pin text-brand-gold ml-2"></i>
+                            <span class="text-gray-400">مكان التخزين:</span>
+                            <p class="font-semibold text-white mt-1">${matched.location}</p>
+                        </div>
+                        <div class="bg-brand-dark/60 p-4 rounded-xl border border-brand-border">
+                            <i class="fa-solid fa-info-circle text-brand-accent ml-2"></i>
+                            <span class="text-gray-400">ملاحظات:</span>
+                            <p class="font-semibold text-white mt-1">${matched.notes || 'لا توجد ملاحظات'}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultCard.classList.remove('hidden');
+                resultCard.innerHTML = `
+                    <div class="text-center py-4 text-gray-400">
+                        <i class="fa-solid fa-circle-exclamation text-3xl text-amber-500 mb-2 block"></i>
+                        لم يتم العثور على أي نتيجة تطابق: <span class="text-white font-bold">"${query}"</span>
+                    </div>
+                `;
+            }
+
+            const filteredData = inventory.filter(item => 
+                item.vin.toLowerCase().includes(query) || 
+                item.itemName.toLowerCase().includes(query) ||
+                item.carModel.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        }
+
+        function openModal() {
+            document.getElementById('itemForm').reset();
+            document.getElementById('editIndex').value = "-1";
+            document.getElementById('modalTitle').innerText = "إضافة غرض جديد للمستودع";
+            document.getElementById('itemModal').classList.remove('hidden');
         }
 
         function closeModal() {
-            document.getElementById('orderModal').classList.add('hidden');
-            document.getElementById('orderModal').classList.remove('flex');
+            document.getElementById('itemModal').classList.add('hidden');
         }
 
-        function calculateTotal() {
-            const qty = parseInt(document.getElementById('modalQuantity').value) || 1;
-            const total = qty * currentPuzzle.price;
-            document.getElementById('modalTotal').textContent = `$${total} USD`;
-        }
+        function saveItem(e) {
+            e.preventDefault();
+            const editIndex = parseInt(document.getElementById('editIndex').value);
 
-        function handleOrderSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const qty = document.getElementById('modalQuantity').value;
-            const notes = document.getElementById('additionalNotes').value || 'None';
-            const total = parseInt(qty) * currentPuzzle.price;
+            const newItem = {
+                vin: document.getElementById('vinInput').value.trim(),
+                itemName: document.getElementById('itemNameInput').value.trim(),
+                carModel: document.getElementById('carModelInput').value.trim(),
+                drawer: document.getElementById('drawerInput').value.trim(),
+                location: document.getElementById('locationInput').value.trim(),
+                notes: document.getElementById('notesInput').value.trim()
+            };
 
-            // Formatted WhatsApp Message
-            const message = `*NEW ORDER - DP PUZZLE*\n` +
-                `-----------------------------\n` +
-                `*Customer Name:* ${name}\n` +
-                `*Phone Number:* ${phone}\n` +
-                `*Selected Puzzle:* ${currentPuzzle.title} (216 Pieces)\n` +
-                `*Quantity:* ${qty}\n` +
-                `*Price per Unit:* $${currentPuzzle.price}\n` +
-                `*Total:* $${total} USD\n` +
-                `*Additional Notes:* ${notes}\n` +
-                `-----------------------------\n` +
-                `Please send payment instructions for WhatsApp confirmation.`;
+            if (editIndex === -1) {
+                inventory.unshift(newItem);
+            } else {
+                inventory[editIndex] = newItem;
+            }
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/96181934766?text=${encodedMessage}`;
-
-            window.open(whatsappUrl, '_blank');
+            saveToStorage();
+            renderTable();
             closeModal();
+            
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResultCard').classList.add('hidden');
         }
 
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        function editItem(index) {
+            const item = inventory[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('vinInput').value = item.vin;
+            document.getElementById('itemNameInput').value = item.itemName;
+            document.getElementById('carModelInput').value = item.carModel;
+            document.getElementById('drawerInput').value = item.drawer;
+            document.getElementById('locationInput').value = item.location;
+            document.getElementById('notesInput').value = item.notes;
+
+            document.getElementById('modalTitle').innerText = "تعديل بيانات الغرض";
+            document.getElementById('itemModal').classList.remove('hidden');
+        }
+
+        function deleteItem(index) {
+            if (confirm("هل أنت تأكد من حذف هذا العنصر نهائيًا؟")) {
+                inventory.splice(index, 1);
+                saveToStorage();
+                renderTable();
+                document.getElementById('searchResultCard').classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
