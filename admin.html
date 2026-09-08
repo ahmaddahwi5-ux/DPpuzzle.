@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP PUZZLE | Admin Dashboard</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link href="[https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap)" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #0B0F17; color: #fff; }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
+            <div>
+                <h1 class="text-2xl font-bold text-yellow-500">لوحة إدارة طلبات DP PUZZLE</h1>
+                <p class="text-xs text-gray-400">متابعة الطلبات المستلمة عبر الموقع</p>
+            </div>
+            <button onclick="clearOrders()" class="bg-red-900/40 hover:bg-red-800 text-red-200 text-xs px-4 py-2 rounded-lg border border-red-700/50">محي كل الطلبات</button>
+        </div>
+
+        <div class="overflow-x-auto bg-gray-900/60 rounded-xl border border-gray-800">
+            <table class="w-full text-right text-sm">
+                <thead class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
+                    <tr>
+                        <th class="p-4">رقم الطلب</th>
+                        <th class="p-4">التاريخ</th>
+                        <th class="p-4">الاسم</th>
+                        <th class="p-4">رقم الهاتف</th>
+                        <th class="p-4">الكمية</th>
+                        <th class="p-4">المجموع</th>
+                        <th class="p-4">ملاحظات</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable" class="divide-y divide-gray-800">
+                    <!-- Dynamic Content -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('dp_orders') || '[]');
+            const tbody = document.getElementById('ordersTable');
+            
+            if(orders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-gray-500">لا يوجد أي طلبات حتى الآن</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = orders.map(o => `
+                <tr class="hover:bg-gray-800/40">
+                    <td class="p-4 font-bold text-yellow-500">${o.id}</td>
+                    <td class="p-4 text-gray-400">${o.date}</td>
+                    <td class="p-4 font-semibold">${o.name}</td>
+                    <td class="p-4 text-gray-300" dir="ltr">${o.phone}</td>
+                    <td class="p-4">${o.quantity}</td>
+                    <td class="p-4 text-emerald-400 font-bold">${o.total}</td>
+                    <td class="p-4 text-gray-400 text-xs">${o.notes}</td>
+                </tr>
+            `).join('');
+        }
+
+        function clearOrders() {
+            if(confirm("هل أنت تأكد من مسح جميع الطلبات المخزنة؟")) {
+                localStorage.removeItem('dp_orders');
+                loadOrders();
+            }
+        }
+
+        loadOrders();
+    </script>
+</body>
+</html>
