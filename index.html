@@ -71,8 +71,8 @@
     <header class="glass-panel sticky top-0 z-50 border-b border-brand-border/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-4 space-x-reverse">
-                <div class="w-14 h-14 rounded-xl overflow-hidden border border-brand-gold/40 shadow-lg shadow-brand-gold/10 bg-black flex items-center justify-center p-1">
-                    <img src="lo.jpg" alt="Dash AHD Logo" class="w-full h-full object-contain">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-gold to-yellow-200 flex items-center justify-center text-brand-dark font-black text-2xl shadow-lg">
+                    D
                 </div>
                 <div>
                     <h1 class="text-2xl font-black tracking-wider gold-gradient-text">DASH AHD</h1>
@@ -125,10 +125,7 @@
         </section>
 
         <section class="glass-panel p-8 rounded-3xl relative overflow-hidden">
-            <div class="max-w-3xl mx-auto text-center space-y-4 relative z-10">
-                <div class="w-24 h-24 mx-auto rounded-2xl border border-brand-gold/30 p-2 mb-2 bg-black/60 shadow-2xl flex items-center justify-center">
-                    <img src="lo.jpg" class="w-full h-full object-contain">
-                </div>
+            <div class="max-w-3xl mx-auto text-center space-y-4">
                 <h2 class="text-2xl sm:text-3xl font-bold gold-gradient-text">البحث عن قطعة أو سيارة</h2>
                 <p class="text-gray-400 text-sm">أدخل رقم الشاسيه (VIN) أو رقم القطعة للوصول السريع إلى مكان التخزين</p>
                 
@@ -222,10 +219,11 @@
     </div>
 
     <footer class="border-t border-brand-border/40 py-6 text-center text-xs text-gray-500">
-        <p>جميع الحقوق محفوظة &copy; 2026 لـ <span class="text-brand-gold font-bold">Dash AHD</span> - نظام إدارة المستودعات الذكي</p>
+        <p>جميع الحقوق محفوظة &copy; 2026 لمناصة <span class="text-brand-gold font-bold">Dash AHD</span> - نظام إدارة المستودعات الذكي</p>
     </footer>
 
     <script>
+        // Sample Initial Data
         const initialData = [
             {
                 vin: "1HGCR2F83HA000101",
@@ -245,8 +243,10 @@
             }
         ];
 
+        // Load data from LocalStorage or use Initial Data
         let inventory = JSON.parse(localStorage.getItem('dash_ahd_inventory')) || initialData;
 
+        // Initialize App
         document.addEventListener('DOMContentLoaded', () => {
             renderTable();
             updateStats();
@@ -346,6 +346,7 @@
                 `;
             }
 
+            // Filter main table live
             const filteredData = inventory.filter(item => 
                 item.vin.toLowerCase().includes(query) || 
                 item.itemName.toLowerCase().includes(query) ||
@@ -354,6 +355,7 @@
             renderTable(filteredData);
         }
 
+        // Modal Controls
         function openModal() {
             document.getElementById('itemForm').reset();
             document.getElementById('editIndex').value = "-1";
@@ -388,6 +390,7 @@
             renderTable();
             closeModal();
             
+            // Clear search if active
             document.getElementById('searchInput').value = '';
             document.getElementById('searchResultCard').classList.add('hidden');
         }
