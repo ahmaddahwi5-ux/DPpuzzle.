@@ -1,76 +1,287 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DP PUZZLE | Admin Dashboard</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <link href="[https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap)" rel="stylesheet">
+    <title>DP PUZZLE | Executive Admin Portal</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f3e8cb',
+                            DEFAULT: '#d4af37',
+                            dark: '#aa820a',
+                        },
+                        obsidian: {
+                            950: '#07080a',
+                            900: '#0b0c10',
+                            800: '#12141d',
+                            700: '#1f2430',
+                            600: '#2d3446'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #0B0F17; color: #fff; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #07080a;
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff3a1 0%, #d4af37 50%, #aa820a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
+        }
+        .gold-gradient-bg:hover {
+            background: linear-gradient(135deg, #e5be48 0%, #bd9311 100%);
+        }
+        .glass-card {
+            background: rgba(18, 20, 29, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.2);
+        }
     </style>
 </head>
-<body class="p-8">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
-            <div>
-                <h1 class="text-2xl font-bold text-yellow-500">لوحة إدارة طلبات DP PUZZLE</h1>
-                <p class="text-xs text-gray-400">متابعة الطلبات المستلمة عبر الموقع</p>
+<body class="antialiased selection:bg-gold selection:text-obsidian-950">
+
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 glass-card border-b border-gold/20 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand & Logo -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 rounded-xl border border-gold/40 bg-obsidian-900 overflow-hidden shadow-lg shadow-gold/10 p-0.5">
+                        <img src="ahmad.jpg" alt="DP PUZZLE Logo" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-black tracking-wider text-white">DP <span class="gold-gradient-text">PUZZLE</span></span>
+                            <span class="px-2 py-0.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-[10px] font-bold tracking-widest uppercase">Admin</span>
+                        </div>
+                        <span class="text-[10px] text-gray-400 tracking-widest block uppercase">Executive Dashboard</span>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="index.html" target="_blank" class="glass-card px-4 py-2.5 rounded-xl text-xs font-bold text-gray-300 hover:text-gold transition flex items-center gap-2 border border-gold/20">
+                        <i class="fa-solid fa-store text-gold"></i>
+                        <span>عرض المتجر</span>
+                    </a>
+                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                </div>
             </div>
-            <button onclick="clearOrders()" class="bg-red-900/40 hover:bg-red-800 text-red-200 text-xs px-4 py-2 rounded-lg border border-red-700/50">محي كل الطلبات</button>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Welcome Banner -->
+        <div class="glass-card rounded-3xl p-6 lg:p-8 border border-gold/20 gold-glow relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="space-y-2 z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold border border-gold/20">
+                    <i class="fa-solid fa-crown"></i> مرحباً بك في لوحة الإدارة العليا
+                </div>
+                <h1 class="text-2xl lg:text-3xl font-black text-white">نظام إدارة الطلبات والمبيعات</h1>
+                <p class="text-gray-400 text-sm">تابع طلبات الـ Puzzle المخصصة، المبيعات الإجمالية، وتواصل مع العملاء بسهولة.</p>
+            </div>
+            <div class="z-10 flex gap-3">
+                <button onclick="window.location.reload()" class="gold-gradient-bg text-obsidian-950 font-bold px-5 py-3 rounded-xl text-sm shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> تحديث البيانات
+                </button>
+            </div>
         </div>
 
-        <div class="overflow-x-auto bg-gray-900/60 rounded-xl border border-gray-800">
-            <table class="w-full text-right text-sm">
-                <thead class="bg-gray-800/80 text-gray-400 border-b border-gray-700">
-                    <tr>
-                        <th class="p-4">رقم الطلب</th>
-                        <th class="p-4">التاريخ</th>
-                        <th class="p-4">الاسم</th>
-                        <th class="p-4">رقم الهاتف</th>
-                        <th class="p-4">الكمية</th>
-                        <th class="p-4">المجموع</th>
-                        <th class="p-4">ملاحظات</th>
-                    </tr>
-                </thead>
-                <tbody id="ordersTable" class="divide-y divide-gray-800">
-                    <!-- Dynamic Content -->
-                </tbody>
-            </table>
+        <!-- KPI Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Metric 1 -->
+            <div class="glass-card rounded-2xl p-6 border border-gold/20 hover:border-gold/40 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400 text-xs font-semibold uppercase tracking-wider">إجمالي الطلبات</span>
+                    <div class="w-10 h-10 rounded-xl bg-gold/10 text-gold flex items-center justify-center border border-gold/20">
+                        <i class="fa-solid fa-cubes text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span class="text-3xl font-black text-white" id="statOrders">24</span>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">+18% هذا الشهر</span>
+                </div>
+            </div>
+
+            <!-- Metric 2 -->
+            <div class="glass-card rounded-2xl p-6 border border-gold/20 hover:border-gold/40 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400 text-xs font-semibold uppercase tracking-wider">الطلبات المعلقة</span>
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
+                        <i class="fa-solid fa-hourglass-half text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span class="text-3xl font-black text-amber-400" id="statPending">5</span>
+                    <span class="text-xs font-bold text-amber-400 bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20">قيد المعالجة</span>
+                </div>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="glass-card rounded-2xl p-6 border border-gold/20 hover:border-gold/40 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400 text-xs font-semibold uppercase tracking-wider">الطلبات المكتملة</span>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span class="text-3xl font-black text-emerald-400" id="statCompleted">19</span>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">تم التسليم بنجاح</span>
+                </div>
+            </div>
+
+            <!-- Metric 4 -->
+            <div class="glass-card rounded-2xl p-6 border border-gold/20 hover:border-gold/40 transition">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-400 text-xs font-semibold uppercase tracking-wider">إجمالي الإيرادات</span>
+                    <div class="w-10 h-10 rounded-xl bg-gold/10 text-gold flex items-center justify-center border border-gold/20">
+                        <i class="fa-solid fa-dollar-sign text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span class="text-3xl font-black gold-gradient-text" id="statRevenue">$290.00</span>
+                    <span class="text-xs font-bold text-gold bg-gold/10 px-2 py-1 rounded-lg border border-gold/20">216 قطعة ($10)</span>
+                </div>
+            </div>
+
         </div>
+
+        <!-- Orders Management Table -->
+        <div class="glass-card rounded-3xl p-6 lg:p-8 border border-gold/20 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gold/10 pb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-receipt text-gold"></i> جدول إدارة طلبات العملاء
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">عرض حالة جميع الطلبات والتواصل السريع عبر WhatsApp</p>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-sm">
+                    <thead>
+                        <tr class="border-b border-gold/20 text-gray-400 text-xs uppercase tracking-wider font-semibold">
+                            <th class="pb-4 pt-2 px-4">رقم الطلب</th>
+                            <th class="pb-4 pt-2 px-4">العميل</th>
+                            <th class="pb-4 pt-2 px-4">رقم الهاتف</th>
+                            <th class="pb-4 pt-2 px-4">المواصفات والكمية</th>
+                            <th class="pb-4 pt-2 px-4">المبلغ الكلي</th>
+                            <th class="pb-4 pt-2 px-4">حالة الطلب</th>
+                            <th class="pb-4 pt-2 px-4 text-center">الإجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gold/10 text-gray-300">
+                        <!-- Row 1 -->
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-extrabold text-gold">#DP-2026-01</td>
+                            <td class="py-4 px-4 font-medium text-white">أحمد المحمد</td>
+                            <td class="py-4 px-4" dir="ltr">+961 81 934 766</td>
+                            <td class="py-4 px-4">
+                                <span class="text-xs bg-obsidian-700 px-2.5 py-1 rounded-lg border border-gold/10 text-gray-300">216 قطعة (عدد 2)</span>
+                            </td>
+                            <td class="py-4 px-4 font-black text-white">$20.00</td>
+                            <td class="py-4 px-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> قيد الانتظار
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <a href="https://wa.me/96181934766?text=مرحباً،%20بخصوص%20طلبك%20من%20DP%20PUZZLE" target="_blank" class="gold-gradient-bg text-obsidian-950 font-bold px-3 py-1.5 rounded-lg text-xs inline-flex items-center gap-1.5 shadow-md">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> مراسلة
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-extrabold text-gold">#DP-2026-02</td>
+                            <td class="py-4 px-4 font-medium text-white">سارة الخليل</td>
+                            <td class="py-4 px-4" dir="ltr">+961 03 123 456</td>
+                            <td class="py-4 px-4">
+                                <span class="text-xs bg-obsidian-700 px-2.5 py-1 rounded-lg border border-gold/10 text-gray-300">216 قطعة (عدد 1)</span>
+                            </td>
+                            <td class="py-4 px-4 font-black text-white">$10.00</td>
+                            <td class="py-4 px-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> تم التسليم
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <a href="https://wa.me/96103123456" target="_blank" class="glass-card text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 hover:bg-emerald-500/10 transition">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> مراسلة
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3 -->
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-extrabold text-gold">#DP-2026-03</td>
+                            <td class="py-4 px-4 font-medium text-white">محمد طاهر</td>
+                            <td class="py-4 px-4" dir="ltr">+961 70 987 654</td>
+                            <td class="py-4 px-4">
+                                <span class="text-xs bg-obsidian-700 px-2.5 py-1 rounded-lg border border-gold/10 text-gray-300">216 قطعة (عدد 3)</span>
+                            </td>
+                            <td class="py-4 px-4 font-black text-white">$30.00</td>
+                            <td class="py-4 px-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> قيد الشحن
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <a href="https://wa.me/96170987654" target="_blank" class="gold-gradient-bg text-obsidian-950 font-bold px-3 py-1.5 rounded-lg text-xs inline-flex items-center gap-1.5 shadow-md">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> مراسلة
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
-    <script>
-        function loadOrders() {
-            const orders = JSON.parse(localStorage.getItem('dp_orders') || '[]');
-            const tbody = document.getElementById('ordersTable');
-            
-            if(orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-gray-500">لا يوجد أي طلبات حتى الآن</td></tr>`;
-                return;
-            }
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-gray-500 border-t border-gold/10 mt-12 glass-card">
+        <p>DP PUZZLE Executive Control Panel &copy; 2026 | All Rights Reserved</p>
+    </footer>
 
-            tbody.innerHTML = orders.map(o => `
-                <tr class="hover:bg-gray-800/40">
-                    <td class="p-4 font-bold text-yellow-500">${o.id}</td>
-                    <td class="p-4 text-gray-400">${o.date}</td>
-                    <td class="p-4 font-semibold">${o.name}</td>
-                    <td class="p-4 text-gray-300" dir="ltr">${o.phone}</td>
-                    <td class="p-4">${o.quantity}</td>
-                    <td class="p-4 text-emerald-400 font-bold">${o.total}</td>
-                    <td class="p-4 text-gray-400 text-xs">${o.notes}</td>
-                </tr>
-            `).join('');
-        }
-
-        function clearOrders() {
-            if(confirm("هل أنت تأكد من مسح جميع الطلبات المخزنة؟")) {
-                localStorage.removeItem('dp_orders');
-                loadOrders();
-            }
-        }
-
-        loadOrders();
-    </script>
 </body>
 </html>
